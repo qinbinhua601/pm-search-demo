@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import * as pmSearch from 'prosemirror-search'
 import { Editor } from './components/Editor'
 import { getUrlSearchParams } from './utils'
-// import FindReplacePanel from './components/FindReplacePanel'
 
 function App() {
   const [searchValue, setSearchValue] = React.useState('')
@@ -47,6 +46,16 @@ function App() {
   const prev = () => {
     const view = ref.current.getEditorRef()
     pmSearch.findPrev(view.state, view.dispatch)
+  }
+
+  const nextNoWrap = () => {
+    const view = ref.current.getEditorRef()
+    pmSearch.findNextNoWrap(view.state, view.dispatch)
+  }
+
+  const prevNoWrap = () => {
+    const view = ref.current.getEditorRef()
+    pmSearch.findPrevNoWrap(view.state, view.dispatch)
   }
 
   const replace = () => {
@@ -108,21 +117,13 @@ function App() {
         onKeyDown={handleKeyDown}
         ref={searchInputRef}
       />
-      <button id="search-button" onClick={handleSearchButtonClick}>
-        search
-      </button>
-      <button id="next-button" onClick={next}>
-        next
-      </button>
-      <button id="prev-button" onClick={prev}>
-        prev
-      </button>
-      <button id="replace-next-button" onClick={replace}>
-        replace
-      </button>
-      <button id="replace-all-button" onClick={replaceAll}>
-        replace all
-      </button>
+      <button id="search-button" onClick={handleSearchButtonClick}> search </button>
+      <button id="next-button" onClick={next}> next </button>
+      <button id="next-button" onClick={nextNoWrap}> nextNoWrap </button>
+      <button id="prev-button" onClick={prev}> prev </button>
+      <button id="prev-button" onClick={prevNoWrap}> prevNoWrap </button>
+      <button id="replace-next-button" onClick={replace}> replace </button>
+      <button id="replace-all-button" onClick={replaceAll}> replace all </button>
       <br />
       <label htmlFor="replace-input">Replace with:</label>
       <input

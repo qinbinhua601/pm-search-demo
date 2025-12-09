@@ -930,3 +930,7 @@ img.ProseMirror-separator {
 .ProseMirror-active-search-match {
   background-color: #ff6a0054;
 }
+
+input, button {
+  margin-right: 3px;
+}
