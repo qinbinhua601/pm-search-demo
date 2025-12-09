@@ -24,7 +24,9 @@ function App() {
       'Search query updated:',
       pmSearch.getMatchHighlights(view.state)
     )
-    cb && cb()
+    if (typeof cb === 'function') {
+      cb()
+    }
   }
 
   const handleKeyDown = (event) => {
